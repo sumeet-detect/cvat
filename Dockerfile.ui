@@ -1,5 +1,4 @@
 FROM node:lts-slim AS cvat-ui
-
 ARG http_proxy
 ARG https_proxy
 ARG no_proxy
@@ -33,7 +32,8 @@ COPY cvat-core/ /tmp/cvat-core/
 COPY cvat-canvas3d/ /tmp/cvat-canvas3d/
 COPY cvat-canvas/ /tmp/cvat-canvas/
 COPY cvat-ui/ /tmp/cvat-ui/
-RUN npm run build:cvat-ui
+# RUN npm run build:cvat-ui
+RUN NODE_OPTIONS='--openssl-legacy-provider' npm run build:cvat-ui
 
 FROM nginx:mainline-alpine
 # Replace default.conf configuration to remove unnecessary rules
