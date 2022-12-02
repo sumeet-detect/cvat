@@ -78,19 +78,19 @@ function MakeCopyItem(props: ItemProps): JSX.Element {
     );
 }
 
-function PropagateItem(props: ItemProps): JSX.Element {
-    const { toolProps, ...rest } = props;
-    const { propagateShortcut, propagate } = toolProps;
-    return (
-        <Menu.Item {...rest}>
-            <CVATTooltip title={`${propagateShortcut}`}>
-                <Button type='link' icon={<BlockOutlined />} onClick={propagate}>
-                    Propagate
-                </Button>
-            </CVATTooltip>
-        </Menu.Item>
-    );
-}
+// function PropagateItem(props: ItemProps): JSX.Element {
+//     const { toolProps, ...rest } = props;
+//     const { propagateShortcut, propagate } = toolProps;
+//     return (
+//         <Menu.Item {...rest}>
+//             <CVATTooltip title={`${propagateShortcut}`}>
+//                 <Button type='link' icon={<BlockOutlined />} onClick={propagate}>
+//                     Propagate
+//                 </Button>
+//             </CVATTooltip>
+//         </Menu.Item>
+//     );
+// }
 
 function SwitchOrientationItem(props: ItemProps): JSX.Element {
     const { toolProps, ...rest } = props;
@@ -231,7 +231,7 @@ export default function ItemMenu(props: Props): JSX.Element {
         <Menu className='cvat-object-item-menu' selectable={false}>
             <CreateURLItem key={MenuKeys.CREATE_URL} toolProps={props} />
             {!readonly && <MakeCopyItem key={MenuKeys.COPY} toolProps={props} />}
-            {!readonly && <PropagateItem key={MenuKeys.PROPAGATE} toolProps={props} />}
+            {/* {!readonly && <PropagateItem key={MenuKeys.PROPAGATE} toolProps={props} />} */}
             {is2D && !readonly && [ShapeType.POLYGON, ShapeType.POLYLINE, ShapeType.CUBOID].includes(shapeType) && (
                 <SwitchOrientationItem key={MenuKeys.SWITCH_ORIENTATION} toolProps={props} />
             )}

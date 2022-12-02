@@ -21,7 +21,7 @@ export default function StandardWorkspaceComponent(): JSX.Element {
             <ControlsSideBarContainer />
             <CanvasWrapperContainer />
             <ObjectSideBarComponent objectsList={<ObjectsListContainer />} />
-            <PropagateConfirmContainer />
+            {/* <PropagateConfirmContainer /> */}
             <CanvasContextMenuContainer />
             <CanvasPointContextMenuComponent />
             <IssueAggregatorComponent />

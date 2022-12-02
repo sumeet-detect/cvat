@@ -20,7 +20,7 @@ export default function StandardWorkspace3DComponent(): JSX.Element {
             <ControlsSideBarContainer />
             <CanvasWrapperContainer />
             <ObjectSideBarComponent objectsList={<ObjectsListContainer />} />
-            <PropagateConfirmContainer />
+            {/* <PropagateConfirmContainer /> */}
             <CanvasContextMenuContainer />
             <CanvasPointContextMenuComponent />
         </Layout>
