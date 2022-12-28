@@ -19,6 +19,7 @@ import CVATSigningInput, { CVATInputType } from 'components/signing-common/cvat-
 
 export interface LoginData {
     credential: string;
+    email: string;
     password: string;
 }
 
@@ -35,6 +36,7 @@ function LoginFormComponent(props: Props): JSX.Element {
     } = props;
     const [form] = Form.useForm();
     const [credential, setCredential] = useState('');
+    const [email, setEmail] = useState('');
 
     const forgotPasswordLink = (
         <Col className='cvat-credentials-link'>
@@ -83,7 +85,7 @@ function LoginFormComponent(props: Props): JSX.Element {
                 <Title level={2}> Sign in </Title>
             </Col>
             <Form
-                className={`cvat-login-form ${credential ? 'cvat-login-form-extended' : ''}`}
+                className={`cvat-login-form ${(credential && email) ? 'cvat-login-form-extended' : ''}`}
                 form={form}
                 onFinish={(loginData: LoginData) => {
                     onSubmit(loginData);
@@ -95,26 +97,50 @@ function LoginFormComponent(props: Props): JSX.Element {
                 >
                     <Input
                         autoComplete='credential'
-                        prefix={<Text>Email or username</Text>}
+                        prefix={<Text>Username</Text>}
                         className={credential ? 'cvat-input-floating-label-above' : 'cvat-input-floating-label'}
                         suffix={credential && (
                             <Icon
                                 component={ClearIcon}
                                 onClick={() => {
                                     setCredential('');
-                                    form.setFieldsValue({ credential: '', password: '' });
+                                    form.setFieldsValue({ credential: '', email: '', password: '' });
                                 }}
                             />
                         )}
                         onChange={(event) => {
                             const { value } = event.target;
                             setCredential(value);
-                            if (!value) form.setFieldsValue({ credential: '', password: '' });
+                            if (!value) form.setFieldsValue({ credential: '', email: '', password: '' });
+                        }}
+                    />
+                </Form.Item>
+                <Form.Item
+                    className='cvat-credentials-form-item'
+                    name='email'
+                >
+                <Input
+                        autoComplete='email'
+                        prefix={<Text>Email</Text>}
+                        className={email ? 'cvat-input-floating-label-above' : 'cvat-input-floating-label'}
+                        suffix={email && (
+                            <Icon
+                                component={ClearIcon}
+                                onClick={() => {
+                                    setEmail('');
+                                    form.setFieldsValue({ credential: '', email: '', password: '' });
+                                }}
+                            />
+                        )}
+                        onChange={(event) => {
+                            const { value } = event.target;
+                            setEmail(value);
+                            if (!value) form.setFieldsValue({ credential: '', email: '', password: '' });
                         }}
                     />
                 </Form.Item>
                 {
-                    credential && (
+                    (credential && email) && (
                         <Form.Item
                             className='cvat-credentials-form-item'
                             name='password'
@@ -135,12 +161,12 @@ function LoginFormComponent(props: Props): JSX.Element {
                     )
                 }
                 {
-                    credential || !socialAuthentication ? (
+                    (credential && email) || !socialAuthentication ? (
                         <Form.Item>
                             <Button
                                 className='cvat-credentials-action-button'
                                 loading={fetching}
-                                disabled={!credential}
+                                disabled={!(credential && email)}
                                 htmlType='submit'
                             >
                                 Next

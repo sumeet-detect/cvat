@@ -22,7 +22,7 @@ interface LoginPageComponentProps {
     hasEmailVerificationBeenSent: boolean;
     googleAuthentication: boolean;
     githubAuthentication: boolean;
-    onLogin: (credential: string, password: string) => void;
+    onLogin: (credential: string, email: string, password: string) => void;
     loadAdvancedAuthenticationMethods: () => void;
 }
 
@@ -73,7 +73,7 @@ function LoginPageComponent(props: LoginPageComponentProps & RouteComponentProps
                                 </div>
                             ) : null}
                             onSubmit={(loginData: LoginData): void => {
-                                onLogin(loginData.credential, loginData.password);
+                                onLogin(loginData.credential, loginData.email, loginData.password);
                             }}
                         />
                     </Col>

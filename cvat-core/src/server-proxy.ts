@@ -336,9 +336,11 @@ async function register(username, firstName, lastName, email, password, confirma
     return response.data;
 }
 
-async function login(credential, password) {
+async function login(username, email, password) {
     const authenticationData = [
-        `${encodeURIComponent(isEmail(credential) ? 'email' : 'username')}=${encodeURIComponent(credential)}`,
+        // Uncomment this for sending email in request
+        // `${encodeURIComponent('email')}=${encodeURIComponent(email)}`,
+        `${encodeURIComponent('username')}=${encodeURIComponent(username)}`,
         `${encodeURIComponent('password')}=${encodeURIComponent(password)}`,
     ]
         .join('&')

@@ -77,8 +77,8 @@ export default function implementAPI(cvat) {
         return new User(user);
     };
 
-    cvat.server.login.implementation = async (username, password) => {
-        await serverProxy.server.login(username, password);
+    cvat.server.login.implementation = async (username, email, password) => {
+        await serverProxy.server.login(username, email, password);
     };
 
     cvat.server.logout.implementation = async () => {
