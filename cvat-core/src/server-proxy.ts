@@ -341,10 +341,11 @@ async function login(username, email, password) {
         // Uncomment this for sending email in request
         // `${encodeURIComponent('email')}=${encodeURIComponent(email)}`,
         `${encodeURIComponent('username')}=${encodeURIComponent(username)}`,
+        `${encodeURIComponent('email')}=${encodeURIComponent(email)}`,
         `${encodeURIComponent('password')}=${encodeURIComponent(password)}`,
     ]
-        .join('&')
-        .replace(/%20/g, '+');
+    .join('&')
+    .replace(/%20/g, '+');
 
     removeToken();
     let authenticationResponse = null;
