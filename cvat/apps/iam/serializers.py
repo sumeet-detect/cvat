@@ -47,13 +47,11 @@ class PasswordResetSerializerEx(PasswordResetSerializer):
 class LoginSerializerEx(LoginSerializer):
     def get_auth_user_using_allauth(self, username, email, password):
         if username:
-            try:
-                user= User.objects.get(username=username)
+            user= self._validate_username(username=username,password=password)
+            if user is not None:
                 user.email = email
                 user.save()
-            except Exception as e:
-                print("Error occured ",e)
-        return self._validate_username(username, password)
+            return user
 
 class SocialLoginSerializerEx(SocialLoginSerializer):
     auth_params = serializers.CharField(required=False, allow_blank=True, default='')
