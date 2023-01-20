@@ -30,6 +30,7 @@ export enum AttributeType {
     CHECKBOX = 'CHECKBOX',
     TEXT = 'TEXT',
     NUMBER = 'NUMBER',
+    AUTOCOMPLETE = 'AUTOCOMPLETE',
 }
 
 interface Props {
@@ -181,6 +182,9 @@ export default class LabelForm extends React.Component<Props> {
                         </Select.Option>
                         <Select.Option value={AttributeType.NUMBER} className='cvat-attribute-type-input-number'>
                             Number
+                        </Select.Option>
+                        <Select.Option value={AttributeType.AUTOCOMPLETE} className='cvat-attribute-type-input-autocomplete'>
+                            Autocomplete
                         </Select.Option>
                     </Select>
                 </Form.Item>

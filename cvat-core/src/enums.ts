@@ -133,6 +133,7 @@ export enum AttributeType {
     SELECT = 'select',
     NUMBER = 'number',
     TEXT = 'text',
+    AUTOCOMPLETE = 'autocomplete',
 }
 
 /**
